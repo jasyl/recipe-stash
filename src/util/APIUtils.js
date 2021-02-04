@@ -41,8 +41,23 @@ export function getRecipes() {
     }
 
     return request({
+        credentials: 'same-origin',
         url: API_BASE_URL + "/recipes",
         method: 'GET',
+        // mode: 'cors'
+    });
+}
+
+export function addExternalRecipe(urlString) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+
+    return request({
+        // credentials: 'same-origin',
+        url: API_BASE_URL + "/recipes" + "?url=" + urlString,
+        method: 'POST',
+        // body: JSON.stringify({url: urlString})
         // mode: 'cors'
     });
 }

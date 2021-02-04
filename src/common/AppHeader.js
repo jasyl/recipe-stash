@@ -15,7 +15,7 @@ class AppHeader extends Component {
                                 { this.props.authenticated ? (
                                     <ul>
                                         <li>
-                                            <NavLink to="/recipes">Recipes</NavLink>
+                                            <NavLink to="/">Recipes</NavLink>
                                         </li>
                                         <li>
                                             <NavLink to="/profile">Profile</NavLink>

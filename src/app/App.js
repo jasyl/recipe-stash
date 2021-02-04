@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AppHeader from '../common/AppHeader';
-import Home from '../home/Home';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
@@ -79,6 +78,8 @@ class App extends Component {
               component={Profile}></PrivateRoute>
             <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
             component={Recipes}></PrivateRoute>
+            {/* <PrivateRoute exact path={"/" + name} authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+            component={RecipePage}></PrivateRoute> */}
             <Route path="/login"
               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"

@@ -1,0 +1,13 @@
+.recipe-card__container{
+  border: 1px solid grey;
+  margin: 1rem;
+  width: 30%;
+}
+
+.recipe-card__img {
+  width: 100%;
+}
+
+.recipe-card__content {
+  margin: 1rem;
+}
