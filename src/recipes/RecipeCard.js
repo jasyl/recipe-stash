@@ -5,7 +5,7 @@ var Fraction = require('fraction.js');
 
 
 const RecipeCard = (props) => {
-  console.log(props)
+  // console.log(props)
   const {img, ingredients, instructions, title} = props
 
   const ingredientList = ingredients.map((item) => {

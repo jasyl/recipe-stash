@@ -15,6 +15,7 @@ import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import Recipes from '../recipes/Recipes';
+import RecipeDetails from '../recipes/RecipeDetails';
 
 class App extends Component {
   constructor(props) {
@@ -76,10 +77,9 @@ class App extends Component {
             {/* <Route exact path="/" component={Home}></Route>            */}
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
-            <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-            component={Recipes}></PrivateRoute>
-            {/* <PrivateRoute exact path={"/" + name} authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-            component={RecipePage}></PrivateRoute> */}
+            <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={Recipes}></PrivateRoute>
+            <PrivateRoute path='/recipes/:id' authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+            component={RecipeDetails}></PrivateRoute>
             <Route path="/login"
               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"
