@@ -41,9 +41,22 @@ export function getRecipes() {
     }
 
     return request({
-        credentials: 'same-origin',
+        // credentials: 'same-origin',
         url: API_BASE_URL + "/recipes",
         method: 'GET',
+        // mode: 'cors'
+    });
+}
+
+export function deleteRecipe(recipeId) {
+    if(!localStorage.getItem(ACCESS_TOKEN)) {
+        return Promise.reject("No access token set.");
+    }
+
+    return request({
+        // credentials: 'same-origin',
+        url: API_BASE_URL + "/recipes/" +recipeId,
+        method: 'DELETE',
         // mode: 'cors'
     });
 }
