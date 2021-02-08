@@ -4,10 +4,14 @@ import { deleteRecipe } from '../util/APIUtils';
 import {Redirect} from 'react-router-dom';
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
+import RecipeManualForm from './RecipeManualForm';
 var Fraction = require('fraction.js');
 
 const RecipeDetails = (props) => {
   const [redirect, setRedirect] = useState(false);
+  const [show, setShow] = useState(false);
+
+
 
   const id = parseInt(props.match.params.id)
 
@@ -31,14 +35,19 @@ const RecipeDetails = (props) => {
       })
   }
 
+  const handleClickEdit = () => {
+    setShow(true);
+  }
+
   if (redirect) {
     return <Redirect to={{pathname: "/", state: { from: props.location } }}/>
   } else {
     return (
       <div className="recipe-card__container">
-        
+        <RecipeManualForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe}/>
         <img src={img} alt='' />
         <h1>{title}</h1>
+        <button onClick={handleClickEdit}>Edit</button>
         <button onClick={handleClickDelete}>Delete</button>
         <p>Servings: {servings}</p>
         <p>Total Time: {readyInMinutes}</p>
