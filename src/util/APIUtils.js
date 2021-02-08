@@ -68,7 +68,7 @@ export function addExternalRecipe(urlString) {
 
     return request({
         // credentials: 'same-origin',
-        url: API_BASE_URL + "/recipes" + "?url=" + urlString,
+        url: API_BASE_URL + "/recipes?url=" + urlString,
         method: 'POST',
         // body: JSON.stringify({url: urlString})
         // mode: 'cors'
@@ -91,4 +91,4 @@ export function signup(signupRequest) {
         body: JSON.stringify(signupRequest),
         // mode: 'cors'
     });
-}
+} 
