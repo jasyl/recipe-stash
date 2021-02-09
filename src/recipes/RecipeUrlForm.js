@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { addExternalRecipe } from '../util/APIUtils';
 import { API_BASE_URL } from '../constants';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'

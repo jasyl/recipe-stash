@@ -1,10 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import RecipeUrlForm from './RecipeUrlForm';
-import { getRecipes } from '../util/APIUtils';
-import { withRouter, Router, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import RecipeCard from './RecipeCard';
-import RecipePage from './RecipeDetails';
 import './Recipes.css';
 
 const Recipes = (props) => {

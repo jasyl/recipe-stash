@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './RecipeCard.css';
-import { deleteRecipe } from '../util/APIUtils';
 import {Redirect} from 'react-router-dom';
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';

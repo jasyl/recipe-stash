@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './AppHeader.css';
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import Button from 'react-bootstrap/button';
-import { LinkContainer } from 'react-router-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RecipeUrlForm from '../recipes/RecipeUrlForm';
 
@@ -11,7 +10,7 @@ const AppHeader = (props) =>  {
 
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
+    // const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         // <header className="app-header">

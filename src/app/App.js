@@ -24,19 +24,9 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
 
-  const loadCurrentlyLoggedInUser = () => {
-    setLoading(true);
-
-    getCurrentUser()
-    .then(response => {
-      setCurrentUser(response);
-      setAuthenticated(true);
-      setLoading(false);
-      reFetchRecipes();
-    }).catch(error => {
-      setLoading(false);
-    });    
-  }
+  // const loadCurrentlyLoggedInUser = () => {
+ 
+  // }
 
   const reFetchRecipes = () => {
     getRecipes()
@@ -56,7 +46,17 @@ const App = () => {
   }
 
   useEffect(() => {
-    loadCurrentlyLoggedInUser();
+    setLoading(true);
+
+    getCurrentUser()
+    .then(response => {
+      setCurrentUser(response);
+      setAuthenticated(true);
+      setLoading(false);
+      reFetchRecipes();
+    }).catch(error => {
+      setLoading(false);
+    });   
   },[])
 
 
