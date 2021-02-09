@@ -1,11 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import RecipeDetails from './RecipeDetails';
+import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form'
 import InputGroup from 'react-bootstrap/InputGroup'
 import { Col, Button, Modal } from "react-bootstrap";
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as yup from 'yup';
-import autosize from "autosize";
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
 var Fraction = require('fraction.js');
