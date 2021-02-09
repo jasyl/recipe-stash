@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { addExternalRecipe } from '../util/APIUtils';
+import { API_BASE_URL } from '../constants';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
@@ -15,9 +16,9 @@ const RecipeUrlForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
-    addExternalRecipe(url)
+    axios.post(`${API_BASE_URL}/recipes`, null, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"url": url}  }) 
       .then(response => {
+        console.log(response);
         setUrl('');
         props.reFetchRecipes(); 
       })
@@ -27,9 +28,7 @@ const RecipeUrlForm = (props) => {
       props.setShow(false)
   }
 
-
   const handleClose = () => props.setShow(false);
-
 
   return (
     // <div>

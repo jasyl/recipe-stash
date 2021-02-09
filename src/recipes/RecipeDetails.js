@@ -4,7 +4,7 @@ import { deleteRecipe } from '../util/APIUtils';
 import {Redirect} from 'react-router-dom';
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
-import RecipeManualForm from './RecipeManualForm';
+import RecipeUpdateForm from './RecipeUpdateForm';
 var Fraction = require('fraction.js');
 
 const RecipeDetails = (props) => {
@@ -44,7 +44,7 @@ const RecipeDetails = (props) => {
   } else {
     return (
       <div className="recipe-card__container">
-        <RecipeManualForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe}/>
+        <RecipeUpdateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe}/>
         <img src={img} alt='' />
         <h1>{title}</h1>
         <button onClick={handleClickEdit}>Edit</button>

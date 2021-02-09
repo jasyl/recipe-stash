@@ -10,7 +10,7 @@ import { API_BASE_URL } from '../constants';
 import axios from 'axios';
 var Fraction = require('fraction.js');
 
-const RecipeManualForm = (props)=> {
+const RecipeUpdateForm = (props)=> {
 
   // convert ingredient JSON
   let ingredientList = '';
@@ -155,4 +155,4 @@ const RecipeManualForm = (props)=> {
 
 }
 
-export default RecipeManualForm;
+export default RecipeUpdateForm;
