@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AppHeader from '../common/AppHeader';
 import Login from '../user/login/Login';
@@ -7,7 +7,7 @@ import Profile from '../user/profile/Profile';
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
-import { getCurrentUser } from '../util/APIUtils';
+import { getCurrentUser, getRecipes } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import PrivateRoute from '../common/PrivateRoute';
 import Alert from 'react-s-alert';
@@ -15,86 +15,88 @@ import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import Recipes from '../recipes/Recipes';
+import RecipeDetails from '../recipes/RecipeDetails';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authenticated: false,
-      currentUser: null,
-      loading: false
-    }
+const App = () => {
 
-    this.loadCurrentlyLoggedInUser = this.loadCurrentlyLoggedInUser.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
+  const [authenticated, setAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [recipes, setRecipes] = useState([]);
 
-  loadCurrentlyLoggedInUser() {
-    this.setState({
-      loading: true
-    });
+  const loadCurrentlyLoggedInUser = () => {
+    setLoading(true);
 
     getCurrentUser()
     .then(response => {
-      this.setState({
-        currentUser: response,
-        authenticated: true,
-        loading: false
-      });
+      setCurrentUser(response);
+      setAuthenticated(true);
+      setLoading(false);
+      reFetchRecipes();
     }).catch(error => {
-      this.setState({
-        loading: false
-      });  
+      setLoading(false);
     });    
   }
 
-  handleLogout() {
+  const reFetchRecipes = () => {
+    getRecipes()
+    .then(recipeResponse => {
+      setRecipes(recipeResponse);
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  const handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN);
-    this.setState({
-      authenticated: false,
-      currentUser: null
-    });
+    setAuthenticated(false);
+    setCurrentUser(null);
     Alert.success("You're safely logged out!");
   }
 
-  componentDidMount() {
-    this.loadCurrentlyLoggedInUser();
+  useEffect(() => {
+    loadCurrentlyLoggedInUser();
+  },[])
+
+
+  if(loading) {
+    return <LoadingIndicator />
   }
 
-  render() {
-    if(this.state.loading) {
-      return <LoadingIndicator />
-    }
-
-    return (
-      <div className="app">
-        <div className="app-top-box">
-          <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} />
-        </div>
-        <div className="app-body">
-          <Switch>
-            {/* <Route exact path="/" component={Home}></Route>            */}
-            <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-              component={Profile}></PrivateRoute>
-            <PrivateRoute exact path="/" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-            component={Recipes}></PrivateRoute>
-            {/* <PrivateRoute exact path={"/" + name} authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-            component={RecipePage}></PrivateRoute> */}
-            <Route path="/login"
-              render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
-            <Route path="/signup"
-              render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
-            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
-            <Route path="/recipes"></Route>
-            <Route component={NotFound}></Route>
-          </Switch>
-        </div>
-        <Alert stack={{limit: 3}} 
-          timeout = {3000}
-          position='top-right' effect='slide' offset={65} />
+  return (
+    <div className="app">
+      <div className="app-top-box">
+        <AppHeader authenticated={authenticated} onLogout={handleLogout} reFetchRecipes={reFetchRecipes} />
+      </div> 
+      <div className="app-body">
+        <Switch>
+          <PrivateRoute path="/profile" authenticated={authenticated} currentUser={currentUser} component={Profile}></PrivateRoute>
+            
+          <PrivateRoute exact path="/" authenticated={authenticated} currentUser={currentUser} recipes={recipes} reFetchRecipes={reFetchRecipes} component={Recipes}></PrivateRoute>
+          
+          <PrivateRoute path='/recipes/:id' authenticated={authenticated} currentUser={currentUser} reFetchRecipes={reFetchRecipes} recipes={recipes}
+          component={RecipeDetails}></PrivateRoute>
+          
+          <Route path="/login"
+            render={(props) => <Login authenticated={authenticated} {...props} />} />
+          
+          <Route path="/signup"
+            render={(props) => <Signup authenticated={authenticated} {...props} />}></Route>
+          
+          <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
+          
+          <Route path="/recipes"></Route>
+          
+          <Route component={NotFound}></Route>
+        </Switch>
       </div>
-    );
-  }
+      <Alert stack={{limit: 3}} 
+        timeout = {3000}
+        position='top-right' effect='slide' offset={65} />
+    </div>
+  );
 }
+
 
 export default App;
