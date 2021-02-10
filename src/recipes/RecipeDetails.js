@@ -41,27 +41,28 @@ const RecipeDetails = (props) => {
   if (redirect) {
     return <Redirect to={{pathname: "/", state: { from: props.location } }}/>
   } else {
-    return (
-      <div className="recipe-card__container">
-        <RecipeUpdateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe}/>
-        <img src={img} alt='' />
-        <h1>{title}</h1>
-        <button onClick={handleClickEdit}>Edit</button>
-        <button onClick={handleClickDelete}>Delete</button>
-        <p>Servings: {servings}</p>
-        <p>Total Time: {readyInMinutes}</p>
-        <div className="ingredients">
-          <h3>Ingredients</h3>
-          <ul>
-            {ingredientList}
-          </ul>
+    return (    
+        <div className="recipe-card__container">
+          <RecipeUpdateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe}/>
+          <img src={img} alt='' />
+          <h1>{title}</h1>
+          <button onClick={handleClickEdit}>Edit</button>
+          <button onClick={handleClickDelete}>Delete</button>
+          <p>Servings: {servings}</p>
+          <p>Total Time: {readyInMinutes}</p>
+          <div className="ingredients">
+            <h3>Ingredients</h3>
+            <ul>
+              {ingredientList}
+            </ul>
+          </div>
+          <div>
+            <h3>Instructions</h3>
+            <p>{instructions}</p>
+          </div>
+          <small><a href={sourceUrl}>{sourceUrl}</a></small>
         </div>
-        <div>
-          <h3>Instructions</h3>
-          <p>{instructions}</p>
-        </div>
-        <small><a href={sourceUrl}>{sourceUrl}</a></small>
-      </div>)
+    )
   }
 }
 
