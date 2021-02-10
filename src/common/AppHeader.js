@@ -5,13 +5,15 @@ import {Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RecipeUrlForm from '../recipes/RecipeUrlForm';
+import RecipeCreateForm from '../recipes/RecipeCreateForm';
 
 const AppHeader = (props) =>  {
 
     const [show, setShow] = useState(false);
 
     // const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleUrlShow = () => setShow(true);
+    const handleCreateShow = () => setShow(true);
     return (
         // <header className="app-header">
         //     <div className="container">
@@ -60,10 +62,11 @@ const AppHeader = (props) =>  {
                         <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
                         <NavDropdown title="Add Recipe" id="collasible-nav-dropdown">
                             
-                            <NavDropdown.Item onClick={handleShow}>Url</NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleUrlShow}>Url</NavDropdown.Item>
                             <RecipeUrlForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow}/>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Manual</NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleCreateShow}>Manual</NavDropdown.Item>
+                            <RecipeCreateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow}/>
                         </NavDropdown>
                         <Button onClick={props.onLogout} variant="outline-light">Logout</Button>
                         </Nav>
