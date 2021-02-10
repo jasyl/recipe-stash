@@ -24,10 +24,6 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
 
-  // const loadCurrentlyLoggedInUser = () => {
- 
-  // }
-
   const reFetchRecipes = () => {
     getRecipes()
     .then(recipeResponse => {

@@ -7,15 +7,16 @@ import axios from 'axios';
 var Fraction = require('fraction.js');
 
 const RecipeCreateForm = (props)=> {
-
-  // convert ingredient JSON
-  let ingredientList = '';
-  props.recipe.ingredients.forEach((item) => {
-    ingredientList += `${new Fraction(item.qty).toFraction(true)} ${item.unit} ${item.ingredient}\n`
-  })
-  
-  const [recipe, setRecipe] = useState(props.recipe);
-  const [ingredients, setIngredients] = useState(ingredientList);
+  const [recipe, setRecipe] = useState(
+    {
+      title: '',
+      readyInMinutes: '',
+      img: '',
+      servings: '',
+      instructions: ''
+    }
+  );
+  const [ingredients, setIngredients] = useState('');
 
   const handleClose = () => props.setShow(false);
 
@@ -33,10 +34,9 @@ const RecipeCreateForm = (props)=> {
     .then(response => {
       console.log(response);
       recipe.ingredients = response.data
-      axios.put(`${API_BASE_URL}/recipes/${recipe.id}`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
+      axios.post(`${API_BASE_URL}/recipes`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
       .then(response => {
         props.reFetchRecipes();
-        props.history.go(0);
       })
       .catch(error => {
         console.log(error);
@@ -47,12 +47,6 @@ const RecipeCreateForm = (props)=> {
       console.log(error);
     })
     props.setShow(false);
-    // send request a get request to get the ingredients
-    // Once i have the ingredients replace them in recipe
-    // make put request to backend to update ingredients
-    // when i get the response i want to close the modal & refresh the page? 
-    // not sure that will update the thing, i may have to refetch recipes again. 
-
   }
 
   const handleIngredientChange = (e) => {
@@ -111,6 +105,20 @@ const RecipeCreateForm = (props)=> {
                   value={recipe.servings}
                   onChange={handleChange}
                 />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} md="12" controlId="validationFormik01">
+              <Form.Label>Image Url</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Image URL"
+                name="img"
+                value={recipe.img}
+                onChange={handleChange}
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
 

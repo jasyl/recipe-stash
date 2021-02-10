@@ -115,6 +115,20 @@ const RecipeUpdateForm = (props)=> {
           </Form.Row>
 
           <Form.Row>
+            <Form.Group as={Col} md="12" controlId="validationFormik01">
+              <Form.Label>Image Url</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Image URL"
+                name="img"
+                value={recipe.img}
+                onChange={handleChange}
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
             <Form.Group as={Col} md="12" controlId="validationFormik03">
               <Form.Label>Ingredients (each ingredient on its own line)</Form.Label>
               <Form.Control
