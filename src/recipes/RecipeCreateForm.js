@@ -4,7 +4,6 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import { Col, Button, Modal } from "react-bootstrap";
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
-var Fraction = require('fraction.js');
 
 const RecipeCreateForm = (props)=> {
   const [recipe, setRecipe] = useState(
