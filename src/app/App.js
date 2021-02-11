@@ -16,6 +16,7 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import Recipes from '../recipes/Recipes';
 import RecipeDetails from '../recipes/RecipeDetails';
+import AlertMessage from '../common/AlertMessage';
 
 const App = () => {
 
@@ -23,6 +24,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  const [message, setMessage] = useState('');
 
   const reFetchRecipes = () => {
     getRecipes()
@@ -65,14 +67,30 @@ const App = () => {
       <div className="app-top-box">
         <AppHeader authenticated={authenticated} onLogout={handleLogout} reFetchRecipes={reFetchRecipes} />
       </div> 
+      
+        {message && <AlertMessage />}
+
       <div className="app-body">
         <Switch>
           <PrivateRoute path="/profile" authenticated={authenticated} currentUser={currentUser} component={Profile}></PrivateRoute>
             
-          <PrivateRoute exact path="/" authenticated={authenticated} currentUser={currentUser} recipes={recipes} reFetchRecipes={reFetchRecipes} component={Recipes}></PrivateRoute>
+          <PrivateRoute 
+            exact path="/" 
+            authenticated={authenticated} 
+            currentUser={currentUser} 
+            recipes={recipes} 
+            reFetchRecipes={reFetchRecipes} 
+            component={Recipes}>
+          </PrivateRoute>
           
-          <PrivateRoute path='/recipes/:id' authenticated={authenticated} currentUser={currentUser} reFetchRecipes={reFetchRecipes} recipes={recipes}
-          component={RecipeDetails}></PrivateRoute>
+          <PrivateRoute 
+            path='/recipes/:id' 
+            authenticated={authenticated} 
+            currentUser={currentUser} 
+            reFetchRecipes={reFetchRecipes} 
+            recipes={recipes}
+            component={RecipeDetails}>
+          </PrivateRoute>
           
           <Route path="/login"
             render={(props) => <Login authenticated={authenticated} {...props} />} />
