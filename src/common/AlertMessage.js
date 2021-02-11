@@ -7,3 +7,5 @@ const AlertMessage = (props) => {
     </div>
   )
 }
+
+export default AlertMessage;
