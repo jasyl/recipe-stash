@@ -68,7 +68,7 @@ const App = () => {
         <AppHeader authenticated={authenticated} onLogout={handleLogout} reFetchRecipes={reFetchRecipes} />
       </div> 
       
-        {message && <AlertMessage />}
+        {message != null && <AlertMessage message={message} />}
 
       <div className="app-body">
         <Switch>
@@ -80,7 +80,9 @@ const App = () => {
             currentUser={currentUser} 
             recipes={recipes} 
             reFetchRecipes={reFetchRecipes} 
-            component={Recipes}>
+            component={Recipes}
+            setMessage={setMessage}>
+            
           </PrivateRoute>
           
           <PrivateRoute 
