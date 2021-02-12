@@ -5,3 +5,17 @@
 .s-alert-close::before, .s-alert-close::after {
     width: 2px;
 }
+
+.app-body {
+    width: 75%;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #F8F6F3;
+}
+
+.app-top-box {
+    background: white;
+
+}

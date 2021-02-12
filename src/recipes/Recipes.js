@@ -4,6 +4,8 @@ import SearchBar from './SearchBar';
 
 import RecipeCard from './RecipeCard';
 import './Recipes.css';
+import { CardDeck } from 'react-bootstrap';
+import AddRecipeButton from './AddRecipeButton'
 
 const Recipes = (props) => {
 
@@ -28,11 +30,15 @@ const Recipes = (props) => {
   return (
 
       <div>
+        <div className="recipe-menu">
+          <AddRecipeButton reFetchRecipes={props.reFetchRecipes} />
           <SearchBar setSearch={setSearch} search={search} />
+        </div>
+          
 
-          <div className="recipe-card-list__container">
+          <CardDeck className="recipe-card-list__container">
             {recipeComponents}
-          </div>
+          </CardDeck>
 
 
       </div>
