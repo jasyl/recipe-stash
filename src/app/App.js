@@ -6,7 +6,6 @@ import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
-import LoadingIndicator from '../common/LoadingIndicator';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { getCurrentUser, getRecipes } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';

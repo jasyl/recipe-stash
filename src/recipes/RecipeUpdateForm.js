@@ -1,25 +1,16 @@
 import React, { useState} from 'react';
-import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
-import { Col, Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
 import './RecipeForm.css';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 var Fraction = require('fraction.js');
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1)
-    },
-  },
-}));
+
 
 const RecipeUpdateForm = (props)=> {
 
-  const classes = makeStyles();
+
 
   // convert ingredient JSON
   let ingredientList = '';

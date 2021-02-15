@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import './Login.css';
 import { GOOGLE_AUTH_URL, ACCESS_TOKEN } from '../../constants';
 import { login } from '../../util/APIUtils';
