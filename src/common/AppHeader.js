@@ -6,31 +6,24 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RecipeUrlForm from '../recipes/RecipeUrlForm';
 import RecipeCreateForm from '../recipes/RecipeCreateForm';
+import { PersonFill } from 'react-bootstrap-icons';
 
 const AppHeader = (props) =>  {
 
-    const [show, setShow] = useState(false);
-
-    const handleUrlShow = () => setShow(true);
-    const handleCreateShow = () => setShow(true);
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Brand as={NavLink} to="/">Recipe Stash</Navbar.Brand>
+        <Navbar collapseOnSelect expand="lg">
+            <Navbar.Brand as={NavLink} to="/">RecipeStash</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav"> 
                 {props.authenticated ? (
                     <Nav className="ml-auto">
                     <Nav.Link as={NavLink} to="/" exact>Recipes</Nav.Link>
-                    <Nav.Link as={NavLink} to="/profile">Profile</Nav.Link>
-                    <NavDropdown title="Add Recipe" id="collasible-nav-dropdown">
-                        
-                        <NavDropdown.Item onClick={handleUrlShow}>Url</NavDropdown.Item>
-                        <RecipeUrlForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow}/>
+                    
+                    <NavDropdown title={<PersonFill className="profile-icon" />} className="profile-dropdown" >
+                        <NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={handleCreateShow}>Manual</NavDropdown.Item>
-                        <RecipeCreateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow}/>
+                        <NavDropdown.Item onClick={props.onLogout}>Logout</NavDropdown.Item>                        
                     </NavDropdown>
-                    <Button onClick={props.onLogout} variant="outline-light">Logout</Button>
                     </Nav>
                 ) : (
                     <Nav className="ml-auto">

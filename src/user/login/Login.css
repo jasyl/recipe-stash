@@ -1,11 +1,14 @@
 .login-container {
     text-align: center;
+    grid-column: 2;
+    margin-top: 10vh;
+    /* align-self: center; */
+    margin-right: 6.25vw;
 }
 
-
 .login-content {
-    background: #fff;
-    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    /* background: #fff; */
+    /* box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27); */
     border-radius: 2px;
     width: 500px;
     display: inline-block;
@@ -18,38 +21,91 @@
 .social-btn {
     margin-bottom: 15px;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
+    background-color:white;
+    border-radius: 10rem;
+    height: 2.5rem;
+    border: 1px solid #ced4da;
+    color: #68717A;
+}
+
+.login-btn {
+    border-radius: 10rem;
+    background-color: #FFA835;
+}
+
+.btn-flat {
+    background-color: #FFA835;
+    color: white;
+}
+
+.btn-flat:hover {
+    background-color: #ffb85a;
+    color: white;
 }
 
 .social-btn img {
     height: 32px;
     float: left;
-    margin-top: 10px;
 }
 
-.social-btn.google {
-    margin-top: 7px;
-}
-
-.social-btn.facebook img {
-    height: 24px;
-    margin-left: 3px;
-}
-
-.social-btn.github img {
-    height: 24px;
-    margin-left: 3px;
-}
-
-.signup-link {
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 14px;
-}
-
-.login-title {
-    font-size: 1.5em;
+.login-site-title {
+    font-size: 1.8em;
     font-weight: 500;
     margin-top: 0;
     margin-bottom: 30px;
-    color: rgba(0, 0, 0, 0.65);
+    color: #6C757D;
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+   
+}
+
+.login-site-desc {
+    color: #6C757D;
+    font-size: 1.2rem;
+    font-weight: 300;
+
+}
+
+.hero-image {
+    align-self: center;
+    width: 50vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100vw;
+    margin-left: -12.5vw;
+}
+
+.login-site-intro {
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+
+.signup-small-text > * {
+    text-align: left;
+    font-size: .8rem !important;
+    margin: 0 !important;
+    color: #68717A;
+}
+
+.sign-up-link {
+    color: #FFA835;
+    border-bottom: 2px solid #FFA835;
+    padding-bottom: 0.1rem;
+}
+
+.sign-up-link:hover {
+    color: #ff9205;
+    border-bottom: 2px solid #ff9205;
+    text-decoration: none; 
+}
+
+.signup-small-text {
+    margin-top: 2rem;
 }

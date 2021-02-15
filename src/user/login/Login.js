@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Login.css';
 import { GOOGLE_AUTH_URL, ACCESS_TOKEN } from '../../constants';
 import { login } from '../../util/APIUtils';
 import { Link, Redirect } from 'react-router-dom'
 import googleLogo from '../../img/google-logo.png';
+import hero_image from '../../img/hero_image.jpg';
+import Button from 'react-bootstrap/Button'
 import Alert from 'react-s-alert';
 
 class Login extends Component {
@@ -33,15 +35,27 @@ class Login extends Component {
         }
 
         return (
-            <div className="login-container">
-                <div className="login-content">
-                    <h1 className="login-title">Login to your Recipe Stash</h1>
-                    <SocialLogin />
-                    <div className="or-separator">
-                        <span className="or-text">OR</span>
+            <div className="login-page">
+                <img className='hero-image' src={hero_image} alt="orange soup"/>
+                <div className="login-container">
+                    <div className="login-content">
+                        <div className="login-site-intro">
+                            <h1 className="login-site-title">Welcome to Recipe Stash!</h1>
+                            <p className='login-site-desc'>
+                                Recipe stash makes it easy and simple to organize all your recipes in one place without clutter! 
+                            </p>
+                        </div>
+                        <SocialLogin />
+                        <div className="or-separator">
+                            <span className="or-text">OR</span>
+                        </div>
+                        <LoginForm {...this.props} />
+                        <div className='signup-small-text'>
+
+                        <p className="signup-link">Don't have an account?</p>
+                        <p><Link className="sign-up-link" to="/signup">Sign up for free</Link></p>
+                        </div>
                     </div>
-                    <LoginForm {...this.props} />
-                    <span className="signup-link">New user? <Link to="/signup">Sign up!</Link></span>
                 </div>
             </div>
         );
@@ -89,10 +103,10 @@ class LoginForm extends Component {
         login(loginRequest)
         .then(response => {
             localStorage.setItem(ACCESS_TOKEN, response.accessToken);
-            Alert.success("You're successfully logged in!");
+            this.props.setMessage({message: "You're successfully logged in!", type: 'success'});
             this.props.history.push("/");
         }).catch(error => {
-            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
+            this.props.setMessage({message: (error && error.message) || 'Oops! Something went wrong. Please try again!', type: 'error'});
         });
     }
     
@@ -110,7 +124,7 @@ class LoginForm extends Component {
                         value={this.state.password} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary">Login</button>
+                    <Button type="submit" variant='flat' className="btn btn-block">Login</Button>
                 </div>
             </form>                    
         );

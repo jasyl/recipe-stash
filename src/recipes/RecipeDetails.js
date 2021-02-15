@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import './RecipeCard.css';
 import {Redirect} from 'react-router-dom';
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
 import RecipeUpdateForm from './RecipeUpdateForm';
+import Button from 'react-bootstrap/Button';
+import './RecipeDetails.css'
 var Fraction = require('fraction.js');
 
 const RecipeDetails = (props) => {
@@ -19,18 +21,20 @@ const RecipeDetails = (props) => {
   const {img, ingredients, instructions, readyInMinutes, servings, sourceUrl, title} = recipe;
   const ingredientList = ingredients.map((item) => {
     return(
-      <li key={item.id}>{new Fraction(item.qty).toFraction(true)} {item.unit} {item.ingredient}</li>
+      <Fragment key={item.id}><p className={(item.qty % 1 === 0) ? 'number' : 'fraction'}>{new Fraction(item.qty).toFraction(true)}</p> <div> {item.unit} {item.ingredient}</div></Fragment>
     )
   })
 
   const handleClickDelete = () => {
-    axios.delete(`${API_BASE_URL}/recipes/${id}`, null, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
+    axios.delete(`${API_BASE_URL}/recipes/${id}`, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
       .then(response => {
         props.reFetchRecipes();
         setRedirect(true);
+        props.setMessage({message: `${title} successfully deleted`, type: 'success'})
       })
       .catch(error => {
         console.log(error);
+        props.setMessage({message: error.message, type: 'error'})
       })
   }
 
@@ -38,30 +42,58 @@ const RecipeDetails = (props) => {
     setShow(true);
   }
 
+  let instructionList;
+
+  if (instructions != null) {
+
+    // html strip may need to be done in backend
+    instructionList = recipe.instructions.replace(/(<([^>]+)>)/gi, "\n").split(/\n/).map((line, i) => {
+      return <p key={i}>{line}</p>
+    })
+  } else {
+    instructionList = <p>Please see full instruction details <a href={sourceUrl} className="source-link">here</a> </p>
+  }
+
+
   if (redirect) {
     return <Redirect to={{pathname: "/", state: { from: props.location } }}/>
   } else {
-    return (    
-        <div className="recipe-card__container">
-          <RecipeUpdateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe}/>
-          <img src={img} alt='' />
-          <h1>{title}</h1>
-          <button onClick={handleClickEdit}>Edit</button>
-          <button onClick={handleClickDelete}>Delete</button>
-          <p>Servings: {servings}</p>
-          <p>Total Time: {readyInMinutes}</p>
+    return (   
+      <Fragment>
+      
+        <RecipeUpdateForm reFetchRecipes={props.reFetchRecipes} show={show} setShow={setShow} recipe={recipe} setMessage={props.setMessage}/>
+
+        <div className="recipe-details__top">
+            <a href={sourceUrl} className="source-link">Source</a>
+            <div className="recipe-details__btns">
+              <Button variant="light" onClick={handleClickEdit}>Edit</Button>
+              <Button variant="light" onClick={handleClickDelete}>Delete</Button>
+            </div>
+          </div>
+
+        <div className="recipe-details">
+          <img src={img} alt='' className="recipe-details__img" />
+          <div className="recipe-details__top-contents">
+            <h1>{title}</h1>
+            <p className='servings'>Servings — {servings}</p>
+            <p className='time'>Total Time — {readyInMinutes}</p>
+          </div>
+
           <div className="ingredients">
-            <h3>Ingredients</h3>
-            <ul>
+            <h5>Ingredients</h5>
+            <div className="ingredient-list">
               {ingredientList}
-            </ul>
+            </div>
           </div>
-          <div>
-            <h3>Instructions</h3>
-            <p>{instructions}</p>
+
+          <div className="instructions">
+            <h5>Instructions</h5>
+            {instructionList}
           </div>
-          <small><a href={sourceUrl}>{sourceUrl}</a></small>
+
         </div>
+
+      </Fragment>
     )
   }
 }

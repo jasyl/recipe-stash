@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { GOOGLE_AUTH_URL } from '../../constants';
 import { signup } from '../../util/APIUtils';
 import googleLogo from '../../img/google-logo.png';
+import hero_image from '../../img/hero_image.jpg';
 import Alert from 'react-s-alert';
 
 class Signup extends Component {
@@ -17,9 +18,16 @@ class Signup extends Component {
         }
 
         return (
-            <div className="signup-container">
+            <div className="login-page">
+            <img className='hero-image' src={hero_image} alt="orange soup"/>
+            <div className="login-container">
                 <div className="signup-content">
-                    <h1 className="signup-title">Signup with SpringSocial</h1>
+                <div className="login-site-intro">
+                            <h1 className="login-title">Welcome to Recipe Stash!</h1>
+                            <p>
+                                Recipe stash makes it easy and simple to organize all your recipes in one place without clutter! 
+                            </p>
+                        </div>
                     <SocialSignup />
                     <div className="or-separator">
                         <span className="or-text">OR</span>
@@ -27,6 +35,7 @@ class Signup extends Component {
                     <SignupForm {...this.props} />
                     <span className="login-link">Already have an account? <Link to="/login">Login!</Link></span>
                 </div>
+            </div>
             </div>
         );
     }

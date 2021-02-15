@@ -31,26 +31,25 @@ const RecipeCreateForm = (props)=> {
     e.preventDefault();
     axios.get(`${API_BASE_URL}/ingredients`, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"ingredients" : ingredients} }) 
     .then(response => {
-      console.log(response);
       recipe.ingredients = response.data
+      props.setMessage({message: 'Recipe Added!', type: 'success'})
       axios.post(`${API_BASE_URL}/recipes`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
       .then(response => {
         props.reFetchRecipes();
+        props.setMessage({message: 'Recipe Added!', type: 'success'})
       })
       .catch(error => {
-        console.log(error);
+        props.setMessage({message: error.message || 'sorry, unable to retrieve recipes', type: 'error'})
       })
-        
     })
     .catch(error => {
-      console.log(error);
+      props.setMessage({message: error.message || 'sorry, unable to add recipe', type: 'error'})
     })
     props.setShow(false);
   }
 
   const handleIngredientChange = (e) => {
     const {value} = e.target
-    console.log(value);
     setIngredients(value)
   }
 

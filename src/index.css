@@ -1,3 +1,4 @@
+
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
@@ -19,13 +20,18 @@ input[type="radio"] {
   padding: 0;
 }
 
+html {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif !important;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: rgba(0,0,0,.80);
+  font-family: 'Roboto', sans-serif;
+  color: #68717A;
 }
 
 .container {
@@ -49,23 +55,28 @@ body {
 **/
 
 a {
-  color: #2098f3;
-  text-decoration: none;
+  color: #FFA835;
+  text-decoration: underline;
   word-wrap: break-word;
   cursor: pointer;
 }
 
 a:hover {
-  color: #40a9ff;
-  text-decoration: none;
+  color: #FFA835;
+  text-decoration: underline;
 }
 
 /**
   Button
 **/
 
+.btn-block {
+  display: block;
+  width: 100%;
+  border-radius: 10rem !important;
+}
 
-.btn {
+/* .btn {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -93,10 +104,7 @@ a:hover {
   outline: none;
 }
 
-.btn-block {
-  display: block;
-  width: 100%;
-}
+
 
 .btn-lg {
   padding: 0 30px;
@@ -133,7 +141,7 @@ a:hover {
 
 .btn-link:hover {
   background-color: rgba(158,158,158, 0.20);
-}
+} */
 
 
 /**
@@ -164,14 +172,14 @@ a:hover {
   display: inline-block;
   padding: 4px 11px;
   width: 100%;
-  height: 45px;
+  height: 2.5rem;
   font-size: 0.87em;
   line-height: 45px;
   color: rgba(0,0,0,.80);
   background-color: #fff;
   background-image: none;
   border: 1px solid #e8e8e8;
-  border-radius: 4px;
+  border-radius: 10rem !important;
   transition: all .3s;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 }
@@ -204,6 +212,12 @@ a:hover {
   opacity: 1;
 }
 
+input[type=email]::-moz-placeholder,
+input[type=password]::-moz-placeholder {
+  color: #b3b3b3;
+  font-size: 1rem;
+}
+
 .form-label {
   margin-bottom: 10px;
 }
@@ -213,7 +227,7 @@ a:hover {
 **/
 
 .or-separator {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #CED4DA;
   padding: 10px 0;
   position: relative;
   display: block;
@@ -223,10 +237,11 @@ a:hover {
 }
 
 .or-text {
+  font-size: .9rem;
   position: absolute;
   left: 46%;
   top: 0;
-  background: #fff;
+  background: #F8F6F3;
   padding: 10px;
-  color: rgba(0,0,0,.45);
+  color: #ADB5BD;
 }

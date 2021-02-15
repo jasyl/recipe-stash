@@ -1,4 +1,7 @@
 import React from 'react';
+// import { XCircle } from 'react-bootstrap-icons';
+import Form from 'react-bootstrap/Form'
+import ClearIcon from '@material-ui/icons/Clear';
 
 
 const SearchBar = (props) => {
@@ -14,14 +17,31 @@ const SearchBar = (props) => {
     props.setSearch(keyword)
   }
 
+  const handleClickCancel = () => {
+    props.setSearch("");
+  }
+
   return (
-    <div className="search-bar">
-      <input 
-        type="text" 
-        placeholder="Enter item to be searched" 
-        onChange={handleChange}
-        value={props.search} />
-    </div>
+
+    <Form className="search-bar">
+      <Form.Group controlId="formBasicSearch" className="search-bar__content">
+        <Form.Control 
+          type="search" 
+          value={props.search} 
+          placeholder="Search your Recipe Library..."
+          onChange={handleChange} 
+        />
+        <ClearIcon className="search-cancel" onClick={handleClickCancel} />
+      </Form.Group>
+    </Form>
+    // <div className="search-bar">
+    //   <input 
+    //     type="text" 
+    //     placeholder="Search..." 
+    //     onChange={handleChange}
+    //     value={props.search} />
+    //     <XCircle className="search-cancel" onClick={handleClickCancel} />
+    // </div>
   )
 }
 

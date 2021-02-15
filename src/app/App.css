@@ -1,7 +1,33 @@
-.s-alert-box {
-    min-width: 250px;
+.app-body {
+    width: 75%;
+    margin: 0 auto;
+    grid-row: main;
+    margin-bottom: 5rem;
+    min-height: calc(100vh - 13rem);
 }
 
-.s-alert-close::before, .s-alert-close::after {
-    width: 2px;
+.app-body-full-height {
+    width: 75%;
+    margin: 0 auto;
+    grid-row: main;
+}
+
+body {
+    background-color: #F8F6F3;
+}
+
+.app-top-box {
+    background: white;
+
+}
+
+.app {
+    display: grid;
+    grid-template-rows: 5rem [main-start] auto [main-end] 3rem ;
+}
+
+
+
+footer {
+    grid-row: main-end;
 }
