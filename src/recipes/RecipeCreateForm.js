@@ -24,7 +24,6 @@ const RecipeCreateForm = (props)=> {
     const recipeCopy = {...recipe}
     recipeCopy[name] = value
     setRecipe(recipeCopy)
-    console.log(value);
   }
 
   const handleSubmit = (e) => {

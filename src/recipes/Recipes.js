@@ -12,8 +12,6 @@ import AddRecipeButton from './AddRecipeButton'
 
 
 const Recipes = (props) => {
-  console.log(props.recipes);
-
 
   const [search, setSearch] = useState(null);
 

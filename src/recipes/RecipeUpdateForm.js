@@ -28,14 +28,12 @@ const RecipeUpdateForm = (props)=> {
     const recipeCopy = {...recipe}
     recipeCopy[name] = value
     setRecipe(recipeCopy)
-    console.log(value);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.get(`${API_BASE_URL}/ingredients`, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"ingredients" : ingredients} }) 
     .then(response => {
-      console.log(response);
       recipe.ingredients = response.data
       axios.put(`${API_BASE_URL}/recipes/${recipe.id}`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
       .then(response => {
@@ -43,13 +41,12 @@ const RecipeUpdateForm = (props)=> {
         props.setMessage({message: `${recipe.title} successfully updated`, type: 'success'})
       })
       .catch(error => {
-        console.log(error);
         props.setMessage({message: error.response.data.message || `Something went wrong, unable to update ${recipe.title}`, type: 'error'})
       })
         
     })
     .catch(error => {
-      console.log(error);
+      props.setMessage({message: error.response.data.message || `Something went wrong, unable to parse recipes`, type: 'error'})
     })
     props.setShow(false);
     // send request a get request to get the ingredients
@@ -62,18 +59,15 @@ const RecipeUpdateForm = (props)=> {
 
   const handleIngredientChange = (e) => {
     const {value} = e.target
-    console.log(value);
     setIngredients(value)
   }
-
 
   return (
     <Modal show={props.show} onHide={handleClose} size="lg">
     <Modal.Header closeButton>
       <Modal.Title>Edit Recipe</Modal.Title>
     </Modal.Header>
-    
-
+  
         <form noValidate onSubmit={handleSubmit} className='manual-form'>
 
         <Modal.Body>
@@ -152,8 +146,6 @@ const RecipeUpdateForm = (props)=> {
           <Button type="submit">Submit form</Button>
           </Modal.Footer>
         </form>
-        
-      
 
   </Modal>
   )

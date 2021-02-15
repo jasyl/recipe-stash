@@ -7,10 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 
 const RecipeCard = (props) => {
-  // console.log(props)
-  const {img, title} = props
-  console.log(img, title)
-
+  const {img, title} = props;
   
   return (
 

@@ -33,7 +33,6 @@ const RecipeDetails = (props) => {
         props.setMessage({message: `${title} successfully deleted`, type: 'success'})
       })
       .catch(error => {
-        console.log(error);
         props.setMessage({message: error.response.data.message, type: 'error'})
       })
   }

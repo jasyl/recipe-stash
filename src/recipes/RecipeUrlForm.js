@@ -18,14 +18,13 @@ const RecipeUrlForm = (props) => {
 
     axios.post(`${API_BASE_URL}/recipes`, null, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"url": url}  }) 
       .then(response => {
-        console.log(response);
         setUrl('');
         props.reFetchRecipes(); 
         props.setMessage({message: 'Recipe Added!', type: 'success'})
       })
       .catch(error => {
-        console.log(error.response);
-        props.setMessage({message: (error.response.data.message || 'sorry, unable to add recipe'), type: 'error'})
+        props.setMessage({message: (error.response.data.message || 'sorry, unable to add recipe'), type: 'error'});
+        setUrl('');
       });
       props.setShow(false)
   }
