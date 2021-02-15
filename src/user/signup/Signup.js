@@ -85,7 +85,7 @@ class SignupForm extends Component {
             Alert.success("You're successfully registered. Please login to continue!");
             this.props.history.push("/login");
         }).catch(error => {
-            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');            
+            Alert.error((error && error.response.data.message) || 'Oops! Something went wrong. Please try again!');            
         });
     }
 

@@ -40,12 +40,11 @@ const RecipeUpdateForm = (props)=> {
       axios.put(`${API_BASE_URL}/recipes/${recipe.id}`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
       .then(response => {
         props.reFetchRecipes();
-        props.history.go(0);
         props.setMessage({message: `${recipe.title} successfully updated`, type: 'success'})
       })
       .catch(error => {
         console.log(error);
-        props.setMessage({message: error.message || `Something went wrong, unable to update ${recipe.title}`, type: 'error'})
+        props.setMessage({message: error.response.data.message || `Something went wrong, unable to update ${recipe.title}`, type: 'error'})
       })
         
     })

@@ -106,7 +106,7 @@ class LoginForm extends Component {
             this.props.setMessage({message: "You're successfully logged in!", type: 'success'});
             this.props.history.push("/");
         }).catch(error => {
-            this.props.setMessage({message: (error && error.message) || 'Oops! Something went wrong. Please try again!', type: 'error'});
+            this.props.setMessage({message: (error && error.response.data.message) || 'Oops! Something went wrong. Please try again!', type: 'error'});
         });
     }
     

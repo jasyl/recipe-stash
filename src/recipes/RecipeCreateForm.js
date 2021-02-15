@@ -39,11 +39,11 @@ const RecipeCreateForm = (props)=> {
         props.setMessage({message: 'Recipe Added!', type: 'success'})
       })
       .catch(error => {
-        props.setMessage({message: error.message || 'sorry, unable to retrieve recipes', type: 'error'})
+        props.setMessage({message: error.response.data.message || 'sorry, unable to retrieve recipes', type: 'error'})
       })
     })
     .catch(error => {
-      props.setMessage({message: error.message || 'sorry, unable to add recipe', type: 'error'})
+      props.setMessage({message: error.response.data.message || 'sorry, unable to add recipe', type: 'error'})
     })
     props.setShow(false);
   }

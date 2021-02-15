@@ -24,7 +24,8 @@ const RecipeUrlForm = (props) => {
         props.setMessage({message: 'Recipe Added!', type: 'success'})
       })
       .catch(error => {
-        props.setMessage({message: error.message || 'sorry, unable to add recipe', type: 'error'})
+        console.log(error.response);
+        props.setMessage({message: (error.response.data.message || 'sorry, unable to add recipe'), type: 'error'})
       });
       props.setShow(false)
   }

@@ -34,7 +34,7 @@ const RecipeDetails = (props) => {
       })
       .catch(error => {
         console.log(error);
-        props.setMessage({message: error.message, type: 'error'})
+        props.setMessage({message: error.response.data.message, type: 'error'})
       })
   }
 
