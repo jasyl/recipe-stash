@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../constants';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
+import TextField from '@material-ui/core/TextField';
 
 const RecipeUrlForm = (props) => {
   
@@ -49,9 +50,19 @@ const RecipeUrlForm = (props) => {
         <Modal.Title>Add Recipe</Modal.Title>
       </Modal.Header>
       
-      <Form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Modal.Body>
-          <Form.Control name='recipeUrl' type='text' placeholder='Recipe Url' onChange={handleChange} value={url} />
+          <TextField
+                  id='url-text-input'
+                  type="text"
+                  label='Recipe URL'
+                  placeholder="Recipe URL"
+                  name="recipeUrl"
+                  value={url}
+                  onChange={handleChange}
+                  variant="outlined"
+                  fullWidth
+                />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -59,7 +70,7 @@ const RecipeUrlForm = (props) => {
           </Button>
           <Button type='submit'>Add Recipe</Button>
         </Modal.Footer>
-      </Form>
+      </form>
     </Modal>
   </>
   )

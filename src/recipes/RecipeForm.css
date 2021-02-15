@@ -3,7 +3,8 @@
   font-size: .9rem;
 }
 
-.manual-form .modal-body > * {
+.manual-form .modal-body > *,
+.create-form .modal-body > * {
   margin: 1rem 0;
   margin-right: 1rem;
 }
@@ -17,6 +18,7 @@
   width: 100%;
 }
 
-.manual-form {
+.manual-form,
+.create-form {
   width: 100%;
 }

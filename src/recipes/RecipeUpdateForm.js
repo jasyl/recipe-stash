@@ -86,7 +86,7 @@ const RecipeUpdateForm = (props)=> {
 
               <TextField
                 id='time-text-input'
-                label='Total Time'
+                label='Total Time in Minutes'
                 type="text"
                 aria-describedby="minutesAppend"
                 placeholder="30"

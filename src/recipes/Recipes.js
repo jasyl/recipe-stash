@@ -13,10 +13,10 @@ import AddRecipeButton from './AddRecipeButton'
 
 const Recipes = (props) => {
 
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState('');
 
   const searchItems = props.recipes.filter(recipe => {
-    if (search == null) {
+    if (search === null || search === '') {
       return recipe;
     } else if (recipe.title.toLowerCase().includes(search.toLowerCase())){
       return recipe

@@ -4,8 +4,9 @@ import {Redirect} from 'react-router-dom';
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
 import RecipeUpdateForm from './RecipeUpdateForm';
-import Button from 'react-bootstrap/Button';
 import './RecipeDetails.css'
+import DeleteButton from './DeleteButton';
+import EditButton from './EditButton';
 var Fraction = require('fraction.js');
 
 const RecipeDetails = (props) => {
@@ -65,8 +66,8 @@ const RecipeDetails = (props) => {
         <div className="recipe-details__top">
             <a href={sourceUrl} className="source-link">Source</a>
             <div className="recipe-details__btns">
-              <Button variant="light" onClick={handleClickEdit}>Edit</Button>
-              <Button variant="light" onClick={handleClickDelete}>Delete</Button>
+              <EditButton handleClickEdit={handleClickEdit} />
+              <DeleteButton handleClickDelete={handleClickDelete} />
             </div>
           </div>
 

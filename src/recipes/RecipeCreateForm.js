@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
-import { Col, Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { API_BASE_URL } from '../constants';
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 
 const RecipeCreateForm = (props)=> {
   const [recipe, setRecipe] = useState(
@@ -54,102 +53,91 @@ const RecipeCreateForm = (props)=> {
 
 
   return (
-    <Modal show={props.show} onHide={handleClose}>
+    <Modal show={props.show} onHide={handleClose} size="lg">
     <Modal.Header closeButton>
       <Modal.Title>Add Recipe</Modal.Title>
     </Modal.Header>
 
-        <Form noValidate onSubmit={handleSubmit}>
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationFormik01">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
+        <form noValidate onSubmit={handleSubmit} className='create-form'>
+
+          <Modal.Body>
+
+          <TextField
+                id='title-text-input'
+                label='Recipe Title'
                 type="text"
                 placeholder="Title"
                 name="title"
                 value={recipe.title}
                 onChange={handleChange}
-
+                fullWidth
+                variant='outlined'
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
 
-          <Form.Row>
-            <Form.Group as={Col} md="3" controlId="validationFormik02">
-              <Form.Label>Total Time</Form.Label>
-              <InputGroup>
-              <Form.Control
+              <TextField
+                id='time-text-input'
+                label='Total Time in Minutes'
                 type="text"
                 aria-describedby="minutesAppend"
                 placeholder="30"
                 name="readyInMinutes"
                 value={recipe.readyInMinutes}
                 onChange={handleChange}
+                variant='outlined'
               />
-              <InputGroup.Append>
-                <InputGroup.Text id="minutesAppend">mins</InputGroup.Text>
-              </InputGroup.Append>
 
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </InputGroup>
-            </Form.Group>
-            <Form.Group as={Col} md="3" controlId="validationFormikUsername">
-              <Form.Label>Servings</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="servings"
-                  value={recipe.servings}
-                  onChange={handleChange}
-                />
-            </Form.Group>
-          </Form.Row>
-
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationFormik01">
-              <Form.Label>Image Url</Form.Label>
-              <Form.Control
+              <TextField
+                id='servings-text-input'
+                label='Number of Servings'
+                placeholder="2"
                 type="text"
+                name="servings"
+                value={recipe.servings}
+                onChange={handleChange}
+                variant="outlined"
+              />
+
+              <TextField
+                id='image-url-text-input'
+                type="text"
+                label='Image URL'
                 placeholder="Image URL"
                 name="img"
                 value={recipe.img}
                 onChange={handleChange}
+                variant="outlined"
+                fullWidth
               />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
 
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationFormik03">
-              <Form.Label>Ingredients (each ingredient on its own line)</Form.Label>
-              <Form.Control
-                as="textarea"
-                aria-label="With textarea"
-                placeholder="Ingredients"
-                name="ingredients"
+              <TextField
+                id="ingredients-text-field"
+                label="Ingredients (1 ingredient per line)"
+                multiline
+                name="ingredeints"
                 value={ingredients}
                 onChange={handleIngredientChange}
+                fullWidth
+                variant="outlined"
               />
 
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group as={Col} md="12" controlId="validationFormik04">
-              <Form.Label>Instructions</Form.Label>
-              <Form.Control
-                as="textarea"
-                aria-label="With textarea"
-                // placeholder="Instructions"
+              <TextField
+                id="instructions-text-field"
+                label="Instructions"
                 name="instructions"
+                multiline
                 value={recipe.instructions}
                 onChange={handleChange}
-
+                fullWidth
+                variant="outlined"
               />
-            </Form.Group>
-          </Form.Row>
-          <Button type="submit">Submit form</Button>
-        </Form>
-      
+
+
+          
+          </Modal.Body>
+          <Modal.Footer>
+            <Button type="submit">Submit form</Button>
+          </Modal.Footer>
+        </form>
 
   </Modal>
   )
