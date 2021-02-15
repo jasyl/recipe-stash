@@ -20,3 +20,16 @@ a.navbar-brand {
 .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
     color: #68717A !important;
 }
+
+.profile-icon {
+    font-size:1.3rem;
+}
+
+.dropdown-toggle::after {
+    content: none !important;
+}
+
+.dropdown-toggle {
+    padding: 0 !important;
+}
+

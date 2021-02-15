@@ -1,19 +1,33 @@
 import React from 'react';
 import './RecipeCard.css';
-import Card from 'react-bootstrap/Card';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 const RecipeCard = (props) => {
   // console.log(props)
   const {img, title} = props
+  console.log(img, title)
 
   
   return (
 
     <Card className="recipe-card__container">
-      <Card.Img variant="top" src={img} alt="" className="recipe-card__img" />
-      <Card.Body className="recipe-card__content">
-        <Card.Title className="recipe-card__title">{title}</Card.Title>
-      </Card.Body>
+      <CardActionArea>
+      <CardMedia 
+        image={img} 
+        title={title} 
+        className="recipe-card__img" 
+        component="img"
+      />
+      <CardContent className="recipe-card__content">
+        <Typography gutterBottom variant="h6" className="recipe-card__title">
+          {title}
+        </Typography>
+      </CardContent>
+      </CardActionArea>
     </Card>
 
   )

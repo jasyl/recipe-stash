@@ -1,6 +1,7 @@
 import React from 'react';
-import { XCircle } from 'react-bootstrap-icons';
+// import { XCircle } from 'react-bootstrap-icons';
 import Form from 'react-bootstrap/Form'
+import ClearIcon from '@material-ui/icons/Clear';
 
 
 const SearchBar = (props) => {
@@ -30,7 +31,7 @@ const SearchBar = (props) => {
           placeholder="Search your Recipe Library..."
           onChange={handleChange} 
         />
-        <XCircle className="search-cancel" onClick={handleClickCancel} />
+        <ClearIcon className="search-cancel" onClick={handleClickCancel} />
       </Form.Group>
     </Form>
     // <div className="search-bar">

@@ -19,7 +19,7 @@ const AppHeader = (props) =>  {
                     <Nav className="ml-auto">
                     <Nav.Link as={NavLink} to="/" exact>Recipes</Nav.Link>
                     
-                    <NavDropdown title={<PersonFill />}>
+                    <NavDropdown title={<PersonFill className="profile-icon" />} className="profile-dropdown" >
                         <NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={props.onLogout}>Logout</NavDropdown.Item>                        

@@ -16,6 +16,18 @@
   align-self: center
 }
 
+.source-link {
+  color: #FFA835;
+  border-bottom: 2px solid #FFA835;
+  padding-bottom: 0.1rem;
+}
+
+.source-link:hover {
+  color: #ff9205;
+  border-bottom: 2px solid #ff9205;
+  text-decoration: none; 
+}
+
 .recipe-details__btns button {
   margin-left: 0.5rem;
   background-color: #DEE2E6;
@@ -29,12 +41,15 @@
   grid-row: 1;
 }
 
+
+
 .recipe-details__img {
   grid-column: 2;
   grid-row: 1;
   object-fit: cover;
   width: 100%;
   max-height: 100%;
+  border-radius: .3rem;
 }
 
 .ingredients {
@@ -42,8 +57,52 @@
   grid-row: 2;
 }
 
+.ingredients p {
+  margin: 0;
+}
 .instructions {
   grid-column: 2 / 3;
   grid-row: 2;
 }
 
+.ingredient-list {
+  padding-left: 0;
+  list-style: none;
+  font-size: 0.8em;
+  font-weight: 500;
+  display: grid;
+  grid-template-columns: 2rem auto;
+  /* column-gap: .1rem; */
+  row-gap: .7rem;
+}
+
+.instructions p {
+  /* font-size: .95rem; */
+  /* font-family: 'Merriweather', serif !important; */
+  font-weight: 400;
+}
+
+.fraction {
+  font-variant-numeric: diagonal-fractions;
+}
+
+/* .fraction::after {
+  content: "    ";
+  white-space: pre;
+}
+
+.number::after {
+  content: "    ";
+  white-space: pre;
+
+} */
+
+.number, .fraction {
+  /* display: inline; */
+  grid-column: 1;
+}
+
+.servings, .time {
+  margin-bottom: .1rem;
+  font-size: 0.9rem;
+}

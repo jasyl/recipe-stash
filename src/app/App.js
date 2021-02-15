@@ -7,16 +7,20 @@ import Profile from '../user/profile/Profile';
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { getCurrentUser, getRecipes } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import PrivateRoute from '../common/PrivateRoute';
-import Alert from 'react-s-alert';
-import 'react-s-alert/dist/s-alert-default.css';
-import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import Recipes from '../recipes/Recipes';
 import RecipeDetails from '../recipes/RecipeDetails';
-import AlertMessage from '../common/AlertMessage';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import Footer from '../common/Footer.js'
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const App = () => {
 
@@ -24,7 +28,21 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState({message: '', type:''});
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (message.message === '' || message.message === null) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  }, [message])
+
+  const handleClose = () => {
+    setMessage({message: '', type:''});
+  }
+
 
   const reFetchRecipes = () => {
     getRecipes()
@@ -32,7 +50,7 @@ const App = () => {
       setRecipes(recipeResponse);
     })
     .catch(error => {
-      console.log(error)
+      setMessage({message: error.message, type: 'error'})
     })
   }
 
@@ -40,7 +58,7 @@ const App = () => {
     localStorage.removeItem(ACCESS_TOKEN);
     setAuthenticated(false);
     setCurrentUser(null);
-    Alert.success("You're safely logged out!");
+    setMessage({message: "You're safely logged out!", type: 'success'});
   }
 
   useEffect(() => {
@@ -57,22 +75,31 @@ const App = () => {
     });   
   },[])
 
-
   if(loading) {
-    return <LoadingIndicator />
+    return <CircularProgress className="loading-indicator" style={{display: 'block', margin: '5rem auto'}}/>
   }
 
   return (
-    <div className="app">
-      <div className="app-top-box">
+    <div className={authenticated ? 'app' : 'app-full-height'}>
+      {authenticated && (<div className="app-top-box">
         <AppHeader authenticated={authenticated} onLogout={handleLogout} reFetchRecipes={reFetchRecipes} />
-      </div> 
+      </div>) }
       
-        {message != null && <AlertMessage message={message} />}
+        {message != null &&     
+          <Snackbar
+            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            key='topcenter'>
+              <Alert onClose={handleClose} severity={message.type}>{message.message}</Alert>
+            </Snackbar>
+          }
 
-      <div className="app-body">
+        <div className={authenticated ? 'app-body' : 'app-body-full-height'}>
         <Switch>
-          <PrivateRoute path="/profile" authenticated={authenticated} currentUser={currentUser} component={Profile}></PrivateRoute>
+        
+          <PrivateRoute exact path="/profile" authenticated={authenticated} currentUser={currentUser} component={Profile}></PrivateRoute>
             
           <PrivateRoute 
             exact path="/" 
@@ -91,11 +118,13 @@ const App = () => {
             currentUser={currentUser} 
             reFetchRecipes={reFetchRecipes} 
             recipes={recipes}
-            component={RecipeDetails}>
+            component={RecipeDetails}
+            setMessage={setMessage}>
+              
           </PrivateRoute>
           
-          <Route path="/login"
-            render={(props) => <Login authenticated={authenticated} {...props} />} />
+          <Route exact path="/login"
+              render={(props) => <Login authenticated={authenticated} {...props} setMessage={setMessage} />} />
           
           <Route path="/signup"
             render={(props) => <Signup authenticated={authenticated} {...props} />}></Route>
@@ -105,11 +134,11 @@ const App = () => {
           <Route path="/recipes"></Route>
           
           <Route component={NotFound}></Route>
+         
         </Switch>
-      </div>
-      <Alert stack={{limit: 3}} 
-        timeout = {3000}
-        position='top-right' effect='slide' offset={65} />
+        </div>
+
+        {authenticated && <Footer />}
     </div>
   );
 }

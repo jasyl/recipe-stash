@@ -1,0 +1,14 @@
+footer {
+  background-color: #FFA835;
+  /* margin-top: 5rem; */
+  display: flex;
+  /* width: 100%; */
+  justify-content: center;
+}
+
+footer small {
+  align-self: center;
+  color: white;
+  font-size: 0.7rem;
+
+}

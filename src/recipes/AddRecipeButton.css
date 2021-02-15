@@ -1,0 +1,37 @@
+.dropdown-url, .dropdown-manual {
+  font-size: 0.9rem !important;
+}
+
+.add-recipe__btn {
+  background-color: #FFA835 !important;
+  border: none;
+  border-radius: 10rem;
+  height:2rem;
+  box-shadow: none !important;
+  padding: 0.25rem 0.75rem !important;
+  color: white !important;
+  font-weight: 400;
+  font-size: .95rem !important;
+}
+
+.add-icon {
+  /* font-size: 1.2rem !important; */
+  /* margin-right: 0.1em; */
+  /* line-height: 1rem; */
+  /* font-weight: 800; */
+}
+
+.add-recipe__btn::after {
+  content: none;
+}
+
+.add-recipe__btn:hover {
+  background-color: #f7a131;
+}
+.show > .btn-primary.dropdown-toggle {
+  background-color: #f7a131;
+}
+
+.dropdown {
+  align-self: center;
+}
