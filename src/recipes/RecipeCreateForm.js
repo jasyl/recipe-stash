@@ -41,7 +41,6 @@ const RecipeCreateForm = (props)=> {
 
         const recipe = values
         recipe.ingredients = response.data
-        // props.setMessage({message: 'Recipe Added!', type: 'success'})
 
         axios.post(`${API_BASE_URL}/recipes`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
         .then(response => {
@@ -54,59 +53,13 @@ const RecipeCreateForm = (props)=> {
       })
       .catch(error => {
         console.log(error);
-        // props.setMessage({message: error.response.data.message || 'sorry, unable to add recipe', type: 'error'})
       })
       props.setShow(false);
   },
 });
 
-  // const [recipe, setRecipe] = useState(
-  //   {
-  //     title: '',
-  //     readyInMinutes: '30',
-  //     img: '',
-  //     servings: '2',
-  //     ingredients: '',
-  //     instructions: ''
-  //   }
-  // );
-  // const [ingredients, setIngredients] = useState('');
 
   const handleClose = () => props.setShow(false);
-
-  // const handleChange = (e) => {
-  //   const {name, value} = e.target;
-  //   const recipeCopy = {...recipe}
-  //   recipeCopy[name] = value
-  //   setRecipe(recipeCopy)
-  // }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios.get(`${API_BASE_URL}/ingredients`, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"ingredients" : ingredients} }) 
-  //   .then(response => {
-  //     recipe.ingredients = response.data
-  //     props.setMessage({message: 'Recipe Added!', type: 'success'})
-  //     axios.post(`${API_BASE_URL}/recipes`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
-  //     .then(response => {
-  //       props.reFetchRecipes();
-  //       props.setMessage({message: 'Recipe Added!', type: 'success'})
-  //     })
-  //     .catch(error => {
-  //       props.setMessage({message: error.response.data.message || 'sorry, unable to retrieve recipes', type: 'error'})
-  //     })
-  //   })
-  //   .catch(error => {
-  //     props.setMessage({message: error.response.data.message || 'sorry, unable to add recipe', type: 'error'})
-  //   })
-  //   props.setShow(false);
-  // }
-
-  // const handleIngredientChange = (e) => {
-  //   const {value} = e.target
-  //   setIngredients(value)
-  // }
-
 
   return (
     <Modal show={props.show} onHide={handleClose} size="lg">

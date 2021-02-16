@@ -16,7 +16,6 @@ const DeleteButton = (props) => {
     setOpen(false);
   };
 
-
   return(
     <Fragment>
       <DeleteConfirmation handleClickDelete={props.handleClickDelete} handleClose={handleClose} open={open} />

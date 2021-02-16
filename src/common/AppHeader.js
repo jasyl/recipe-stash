@@ -18,7 +18,7 @@ const AppHeader = (props) =>  {
                     <Nav.Link as={NavLink} to="/" exact>Recipes</Nav.Link>
                     
                     <NavDropdown title={
-                          <IconButton aria-label="Edit">
+                        <IconButton aria-label="Edit">
                             <PersonIcon className="profile-icon" />
                         </IconButton>
                         } className="profile-dropdown" >

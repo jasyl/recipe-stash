@@ -20,9 +20,9 @@ const RecipeDetails = (props) => {
   const recipe = props.recipes.filter(recipe => recipe.id === id)[0];
 
   const {img, ingredients, instructions, readyInMinutes, servings, sourceUrl, title} = recipe;
-  const ingredientList = ingredients.map((item) => {
+  const ingredientList = ingredients.map((item, i) => {
     return(
-      <Fragment key={item.id}><p className={(item.qty % 1 === 0) ? 'number' : 'fraction'}>{new Fraction(item.qty).toFraction(true)}</p> <div> {item.unit} {item.ingredient}</div></Fragment>
+        <p key={i} className={(item.qty % 1 === 0) ? 'number' : 'fraction'}>{new Fraction(item.qty).toFraction(true)} {item.unit} {item.ingredient}</p> 
     )
   })
 
@@ -47,8 +47,14 @@ const RecipeDetails = (props) => {
   if (instructions != null) {
 
     // html strip may need to be done in backend
-    instructionList = recipe.instructions.replace(/(<([^>]+)>)/gi, "\n").split(/\n/).map((line, i) => {
-      return <p key={i}>{line}</p>
+    // replace(/(<([^>]+)>)/gi, "\n").split(/\n/)
+    instructionList = recipe.instructions.split(/\n/).filter(line => line !== '').map((line, i) => {
+      return (
+        <Fragment>
+          <p className='recipe-step'>{i + 1}</p>
+          <p className="instruction-line" key={i}>{line}</p>
+        </Fragment>
+      )
     })
   } else {
     instructionList = <p>Please see full instruction details <a href={sourceUrl} className="source-link">here</a> </p>
@@ -74,9 +80,12 @@ const RecipeDetails = (props) => {
         <div className="recipe-details">
           <img src={img} alt='' className="recipe-details__img" />
           <div className="recipe-details__top-contents">
-            <h1>{title}</h1>
-            <p className='servings'>Servings — {servings}</p>
-            <p className='time'>Total Time — {readyInMinutes}</p>
+            <h1 className='recipe-details-title'>{title}</h1>
+            <p className='time-and-servings'> 
+              <span className='time'>{readyInMinutes} minutes</span> 
+              <span className='separator'>•</span>
+              <span className='servings'>{servings} servings</span>
+            </p>
           </div>
 
           <div className="ingredients">
@@ -88,7 +97,9 @@ const RecipeDetails = (props) => {
 
           <div className="instructions">
             <h5>Instructions</h5>
-            {instructionList}
+            <div className="instruction-list">
+              {instructionList}
+            </div>
           </div>
 
         </div>

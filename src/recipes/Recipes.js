@@ -20,6 +20,14 @@ const Recipes = (props) => {
       return recipe;
     } else if (recipe.title.toLowerCase().includes(search.toLowerCase())){
       return recipe
+    } else if  (!recipe.title.toLowerCase().includes(search.toLowerCase())) {
+        const ingredient = recipe.ingredients.find(ingredient => ingredient.ingredient.toLowerCase().includes(search.toLowerCase()));
+
+        if (ingredient) {
+          return recipe
+        } else {
+          return false
+        }
     } else {
       return false
     }

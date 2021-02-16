@@ -80,39 +80,6 @@ const RecipeUpdateForm = (props)=> {
 
   const handleClose = () => props.setShow(false);
 
-  // const handleChange = (e) => {
-  //   const {name, value} = e.target;
-  //   const recipeCopy = {...recipe}
-  //   recipeCopy[name] = value
-  //   setRecipe(recipeCopy)
-  // }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios.get(`${API_BASE_URL}/ingredients`, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"ingredients" : ingredients} }) 
-  //   .then(response => {
-  //     recipe.ingredients = response.data
-  //     axios.put(`${API_BASE_URL}/recipes/${recipe.id}`, recipe, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` } }) 
-  //     .then(response => {
-  //       props.reFetchRecipes();
-  //       props.setMessage({message: `${recipe.title} successfully updated`, type: 'success'})
-  //     })
-  //     .catch(error => {
-  //       props.setMessage({message: error.response.data.message || `Something went wrong, unable to update ${recipe.title}`, type: 'error'})
-  //     })
-        
-  //   })
-  //   .catch(error => {
-  //     props.setMessage({message: error.response.data.message || `Something went wrong, unable to parse recipes`, type: 'error'})
-  //   })
-  //   props.setShow(false);
-  // }
-
-  // const handleIngredientChange = (e) => {
-  //   const {value} = e.target
-  //   setIngredients(value)
-  // }
-
   return (
     <Modal show={props.show} onHide={handleClose} size="lg">
     <Modal.Header closeButton>
