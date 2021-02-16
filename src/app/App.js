@@ -27,7 +27,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
-  const [message, setMessage] = useState({message: '', type:'error'});
+  const [message, setMessage] = useState({message: '', type:''});
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const App = () => {
   }, [message])
 
   const handleClose = () => {
-    setMessage({message: '', type:'error'});
+    // setMessage({message: '', type:'warning'});
     setOpen(false);
   }
 
