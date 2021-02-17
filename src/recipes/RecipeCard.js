@@ -14,7 +14,7 @@ const RecipeCard = (props) => {
 
     <Card className="recipe-card__container">
 
-      <FavoriteButton favorite={favorite} id={id} className='favorite-btn' />
+      <FavoriteButton favorite={favorite} id={id} reFetchRecipes={props.reFetchRecipes} className='favorite-btn' />
       <CardMedia 
         image={img} 
         title={title} 

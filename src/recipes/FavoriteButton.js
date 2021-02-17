@@ -17,9 +17,8 @@ const FavoriteButton = (props) => {
     setFavorite(!favorite);
     axios.post(`${API_BASE_URL}/recipes/${props.id}`, null, { headers: { 'Authorization': `Bearer ${localStorage.accessToken}` }, params: {"favorite" : !props.favorite} }) 
     .then(response => {
-      console.log(response);
-      
-      // props.reFetchRecipes();
+      console.log(response);  
+      props.reFetchRecipes();
     })
     .catch(error => {
       console.log(error);

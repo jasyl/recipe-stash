@@ -73,7 +73,7 @@ const RecipeDetails = (props) => {
         <div className="recipe-details__top">
             <a href={sourceUrl} className="source-link">Source</a>
             <div className="recipe-details__btns">
-              <FavoriteButton className="recipe-details-favorite-button" favorite={favorite} id={id} />
+              <FavoriteButton className="recipe-details-favorite-button" favorite={favorite} id={id} reFetchRecipes={props.reFetchRecipes}/>
               <EditButton handleClickEdit={handleClickEdit} />
               <DeleteButton handleClickDelete={handleClickDelete} />
             </div>
