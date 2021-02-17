@@ -56,14 +56,14 @@ body {
 
 a {
   color: #FFA835;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   word-wrap: break-word;
   cursor: pointer;
 }
 
 a:hover {
   color: #FFA835;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /**
