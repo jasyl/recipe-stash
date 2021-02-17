@@ -15,7 +15,7 @@ const AppHeader = (props) =>  {
             <Navbar.Collapse id="responsive-navbar-nav"> 
                 {props.authenticated ? (
                     <Nav className="ml-auto">
-                    <Nav.Link as={NavLink} to="/" exact>Recipes</Nav.Link>
+                    <Nav.Link as={NavLink} to="/" exact className='nav-link-recipes'>Recipes</Nav.Link>
                     
                     <NavDropdown title={
                         <IconButton aria-label="Edit">

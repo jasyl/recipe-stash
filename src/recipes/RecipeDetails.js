@@ -7,6 +7,7 @@ import RecipeUpdateForm from './RecipeUpdateForm';
 import './RecipeDetails.css'
 import DeleteButton from './DeleteButton';
 import EditButton from './EditButton';
+import FavoriteButton from './FavoriteButton';
 var Fraction = require('fraction.js');
 
 const RecipeDetails = (props) => {
@@ -19,7 +20,7 @@ const RecipeDetails = (props) => {
 
   const recipe = props.recipes.filter(recipe => recipe.id === id)[0];
 
-  const {img, ingredients, instructions, readyInMinutes, servings, sourceUrl, title} = recipe;
+  const {img, ingredients, instructions, readyInMinutes, servings, sourceUrl, title, favorite} = recipe;
   const ingredientList = ingredients.map((item, i) => {
     return(
         <p key={i} className={(item.qty % 1 === 0) ? 'number' : 'fraction'}>{new Fraction(item.qty).toFraction(true)} {item.unit} {item.ingredient}</p> 
@@ -51,7 +52,7 @@ const RecipeDetails = (props) => {
     instructionList = recipe.instructions.split(/\n/).filter(line => line !== '').map((line, i) => {
       return (
         <Fragment>
-          <p className='recipe-step'>{i + 1}</p>
+          <p className='recipe-step' key={'step' + i}>{i + 1}</p>
           <p className="instruction-line" key={i}>{line}</p>
         </Fragment>
       )
@@ -72,6 +73,7 @@ const RecipeDetails = (props) => {
         <div className="recipe-details__top">
             <a href={sourceUrl} className="source-link">Source</a>
             <div className="recipe-details__btns">
+              <FavoriteButton className="recipe-details-favorite-button" favorite={favorite} id={id} />
               <EditButton handleClickEdit={handleClickEdit} />
               <DeleteButton handleClickDelete={handleClickDelete} />
             </div>

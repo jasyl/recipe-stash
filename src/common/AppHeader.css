@@ -8,22 +8,36 @@
 
 .navbar-brand {
     font-weight: 800;
-    color:#68717A;
     letter-spacing: 0.01em;
+    color: #68717abd !important;
+    font-size: 1.2rem;
 }
 
-a.navbar-brand {
+.navbar-brand {
+    color: #68717abd !important;
+    font-size: 1.2rem;
+}
+
+.navbar-brand:focus,
+.nav-link-recipes:focus,
+.nav-link.active {
+    color: #68717abd !important;
+}
+
+
+.navbar-brand:hover,
+.nav-link-recipes:hover {
     color:#68717A !important;
-    font-size: 1.4rem;
-}
-
-.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
-    color: #68717A !important;
 }
 
 .profile-icon {
     font-size:1.3rem;
+    color: #68717abd;
 }
+
+/* .profile-icon:hover {
+    color: #FFA835 !important;
+} */
 
 .dropdown-toggle::after {
     content: none !important;
@@ -33,3 +47,9 @@ a.navbar-brand {
     padding: 0 !important;
 }
 
+.nav-link-recipes {
+    align-self:center;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #68717abd;
+}

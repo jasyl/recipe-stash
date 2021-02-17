@@ -35,7 +35,7 @@ const Recipes = (props) => {
 
 
   const recipeComponents = searchItems.map(recipe => {
-    return (<Link to={{pathname: '/recipes/' + recipe.id}} key={recipe.id} className="recipe-card-link__container"><RecipeCard {...recipe}  /></Link>)
+    return (<Link to={{pathname: '/recipes/' + recipe.id}} key={recipe.id} className="recipe-card-link__container"><RecipeCard {...recipe} reFetchRecipes={props.reFetchRecipes} /></Link>)
   })
 
   if (props.recipes.length === 0) {

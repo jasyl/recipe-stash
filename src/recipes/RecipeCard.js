@@ -5,28 +5,31 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import FavoriteButton from './FavoriteButton';
 
 const RecipeCard = (props) => {
-  const {img, title} = props;
+  const {img, title, favorite, id} = props;
   
   return (
 
     <Card className="recipe-card__container">
-      <CardActionArea>
+
+      <FavoriteButton favorite={favorite} id={id} className='favorite-btn' />
       <CardMedia 
         image={img} 
         title={title} 
         className="recipe-card__img" 
         component="img"
       />
-      <CardContent className="recipe-card__content">
-        <Typography gutterBottom variant="h6" className="recipe-card__title">
-          {title}
-        </Typography>
-      </CardContent>
+      <CardActionArea className="recipe-card__actionarea">
+        <CardContent className="recipe-card__content">
+          <Typography gutterBottom variant="h6" className="recipe-card__title">
+            {title}
+          </Typography>
+          
+        </CardContent>
       </CardActionArea>
     </Card>
-
   )
 }
 

@@ -116,7 +116,8 @@
 }
 
 .time-and-servings {
-  color: #68717A;
+  color: #68717abd;
+  font-weight: 600;
 }
 
 .recipe-details h5 {
@@ -125,6 +126,10 @@
 
 .recipe-details-title {
   font-weight: 700;
+}
+
+.recipe-details-favorite-button {
+  
 }
 
 
