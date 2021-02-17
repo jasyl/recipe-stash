@@ -58,7 +58,7 @@ h6 {
   top: 0.5rem;
   right: 0.5rem;
   justify-self: flex-end;
-  background-color: rgba(32, 32, 32, 0.445) !important;
+  background-color: rgba(201, 201, 201, 0.445) !important;
   margin: 1rem;
   float: right;
   z-index: 2;
@@ -67,11 +67,11 @@ h6 {
 }
 
 .favorite-btn:hover{
-  background-color: rgba(32, 32, 32, 0.753)!important;
+  background-color: rgba(177, 177, 177, 0.76)!important;
 }
 
 .favorite-icon {
-  color: rgb(248, 171, 171);
+  color: rgb(255, 117, 117);
   /* color: white; */
 }
 
