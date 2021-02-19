@@ -6,7 +6,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Set up
 
 Make sure you have [Node.js](https://nodejs.org/en/) installed. 
-
 Fork and clone this repository
 
 ### `npm install`
@@ -32,7 +31,7 @@ This library helps me convert decimals to fractions on the front-end: [Fraction.
 
 Froms and Validations: [Formik with Material-UI](https://formik.org/docs/examples/with-material-ui) & [Yup](https://github.com/jquense/yup)
 
-[Axios](https://github.com/axios/axios)
+I made requests via [Axios](https://github.com/axios/axios)
 
 I deployed to [Netlify](https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/)
 
