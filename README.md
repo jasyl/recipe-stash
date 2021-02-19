@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 RecipeStash is a Recipe Manager that allows you to add recipes via URL or manually. 
+
 This frontend was created to work with [RecipeStash API](https://github.com/jasyl/recipe-stash-api)
 
 
