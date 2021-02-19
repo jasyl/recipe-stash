@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+RecipeStash is a Recipe Manager that allows you to add recipes via URL or manually. 
+This frontend was created to work with [RecipeStash API](https://github.com/jasyl/recipe-stash-api)
+
 
 ## Set up
 
@@ -24,6 +27,7 @@ You will also see any lint errors in the console.
 Checkout the [deployed version](https://my-recipe-stash.netlify.app/login) on Netflify 
 
 ## Resources & Libraries
+For the security and OAuth implementation, checkout [CalliCoder](https://www.callicoder.com/spring-boot-security-oauth2-social-login-part-1/)
 
 For styling checkout [Material-UI](https://material-ui.com/) & [React Bootstrap](https://react-bootstrap.github.io/)
 
